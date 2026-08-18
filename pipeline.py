@@ -24,12 +24,10 @@ def get_data(symbol, timeframe, start_date, end_date):
          raw_data = fetch_data(symbol)
 
          validation_result = validate_data(raw_data)
-
          if not validation_result["passed"]:
              raise ValueError("Downloaded data failed validation")
 
          data = resample_data(raw_data, timeframe)
-
          save_data(data, symbol, timeframe)
     
          data = data.loc[start_date:end_date]
