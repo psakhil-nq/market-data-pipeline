@@ -34,6 +34,7 @@ def get_data(symbol, timeframe, start_date, end_date):
 
     return data
 
+if __name__ == "__main__":
 data = get_data("SPY", "5min", "2026-08-06", "2026-08-07")
 print(data.head())
 print(data.tail())
