@@ -30,11 +30,10 @@ def get_data(symbol, timeframe, start_date, end_date):
          data = resample_data(raw_data, timeframe)
          save_data(data, symbol, timeframe)
     
-         data = data.loc[start_date:end_date]
-         validation_result = validate_data(data)
+    data = data.loc[start_date:end_date]
 
     return data
 
-data = get_data("SPY", "5min", "2026-08-05", "2026-08-14")
+data = get_data("SPY", "5min", "2026-08-06", "2026-08-07")
 print(data.head())
 print(data.tail())
