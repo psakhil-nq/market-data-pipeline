@@ -6,8 +6,8 @@ def fetch_data(symbol):
     ticker = yf.Ticker(symbol)
 
     data = ticker.history(
-        period="8d",
-        interval="1m"
+        period="60d",
+        interval="5m"
     )
 
     data = data.drop(
