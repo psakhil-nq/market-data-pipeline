@@ -1,5 +1,7 @@
 import yfinance as yf
 
+INTERVAL = "5m"
+
 
 def fetch_data(symbol):
 
@@ -7,7 +9,7 @@ def fetch_data(symbol):
 
     data = ticker.history(
         period="60d",
-        interval="5m"
+        interval=INTERVAL
     )
 
     data = data.drop(
@@ -20,13 +22,14 @@ def fetch_data(symbol):
 
 if __name__ == "__main__":
 
-    data = fetch_data("SPY")
+    symbol = input("Enter Symbol (eg.SPY,QQQ): ").upper()
+    data = fetch_data(symbol)
 
     data.to_csv(
-        "CLEANED-SPY_history.csv",
+        f"RAW-{symbol}_history.csv",
         index=True
     )
 
-    print("Historical data saved to CLEANED-SPY_history.csv")
+    print(f"Historical data saved to RAW-{symbol}_history.csv")
     print(data.columns)
     print(data.shape)

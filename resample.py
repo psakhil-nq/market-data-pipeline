@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 def resample_data(data, timeframe):
 
     ohlcv_rules = {
@@ -22,32 +21,8 @@ def resample_data(data, timeframe):
 
 def save_data(data, symbol, timeframe):
 
-    filename = f"data/CLEANEDhistory-{timeframe}.csv"
+    filename = f"data/{symbol}-{timeframe}.csv"
 
     data.to_csv(filename, index=True)
 
     print(f"Saved resampled data to {filename}")
-
-
-if __name__ == "__main__":
-
-    data = pd.read_csv(
-        "CLEANED-SPY_history.csv",
-        index_col=0,
-        parse_dates=True
-    )
-
-    print("original data:")
-    print(data.head())
-
-    timeframes = ["5min", "15min", "30min", "1h", "4h"]
-
-    for timeframe in timeframes:
-
-        resampled_data = resample_data(data, timeframe)
-
-        save_data(
-            resampled_data,
-            "SPY",
-            timeframe
-        )

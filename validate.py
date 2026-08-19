@@ -1,16 +1,19 @@
 import pandas as pd
 
 
-def validate_data(data):
+def validate_data(data, interval):
+
+    interval = pd.Timedelta(interval)
 
     missing_values = data.isnull().sum()
     duplicate_count = data.index.duplicated().sum()
 
     has_duplicates = duplicate_count > 0
+
     timestamps_ordered = data.index.is_monotonic_increasing
 
     gaps = data.index.to_series().diff()
-    large_gaps = gaps[gaps > pd.Timedelta("00:01:00")]
+    large_gaps = gaps[gaps > interval]
 
     has_missing_values = missing_values.any()
 
